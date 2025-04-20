@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/about_me_styles.css' %}">
+    <title>About me</title>
+</head>
+<body>
+    <header>
+        <h1>{% block title %} About {% endblock %}</h1>{% include "main/partials/header.html" %}
+    </header>
+    <main>
+        <section>
+            <h2>About me</h2>
+            <ul>
+              <li>
+                <h4>I'm 15 years old and I'm a junior Python developer</h4>
+                <h3></h3>
+              </li>
+            </ul>
+        </section>
+        <table>
+          <caption><b>Age</b></caption>
+          <tr>
+            <td>Steave</td>
+            <td>Grant</td>
+            <td>Alan</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>14</td>
+            <td>16</td>
+          </tr>
+        </table>
+        <table>
+          <caption><b>Nickname</b></caption>
+          <tr>
+            <td>Steave</td>
+            <td>Grant</td>
+            <td>Alan</td>
+          </tr>
+          <tr>
+            <td>Pups228</td>
+            <td>MegaBuldozer</td>
+            <td>Mamkinnagibator_3000</td>
+          </tr>
+        </table>
+    </main>
+</body>
+</html>

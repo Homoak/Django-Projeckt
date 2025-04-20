@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'main/css/about_styles.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>{% block title %} About page {% endblock %}</h1>{% include "main/partials/header.html" %}
+    </header>
+    <main>
+        <section>
+            <h2>About Magazine</h2>
+            <ul>
+              <li>
+                <h4>Our chain of stores is just starting its journey, this site is only at the development stage</h4>
+                <h3></h3>
+              </li>
+            </ul>
+        </section>
+        <section>
+            <h2>About us</h2>
+            <ul>
+                <li>
+                  <h4>Our team strives to make a quality product so that the user can use it without any problems.</h4>
+                  <h3></h3>
+                </li>
+              </ul>
+        </section>
+    </main>
+</body>
+
+</html>

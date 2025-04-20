@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+ 
+  /* Set the background color of the body element */
+  body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+ 
+  /* Style the header section */
+  header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+ 
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+ 
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+ 
+  nav li {
+    color: #000;
+    margin-right: 20px;
+  }
+ 
+  nav a {
+    color: #000;
+    text-decoration: none;
+  }

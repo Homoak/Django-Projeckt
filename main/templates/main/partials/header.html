@@ -1,0 +1,12 @@
+    <header>
+      <h1>{% block title %}{% endblock %}</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url '404' %}">Shop</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'about_me' %}">About Me</a></li>
+          <li><a href="{% url '404' %}">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
