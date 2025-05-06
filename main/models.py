@@ -19,3 +19,15 @@ class User(models.Model):
     phone = models.IntegerField()
 
     birthday = models.DateField()
+
+class Admin_Table(models.Model):
+    name = models.CharField(max_length=50)
+
+    password = models.CharField(max_length=75)
+
+    phone = models.IntegerField()
+
+class Cart(models.Model):
+    subjeckt = models.CharField(max_length=50)
+
+    code = models.CharField(max_length=10)
