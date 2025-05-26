@@ -28,7 +28,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('main/index/html')
+            return redirect('main/index.html')
     else:
         form = RegisterForm()
     return render(request, 'main/register.html', {'form': form})
@@ -43,7 +43,7 @@ def login_p(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("index.html")
+                return redirect("index")
             else:
                 messages.error(request,"Invalid username or password.")
         else:
@@ -54,7 +54,7 @@ def login_p(request):
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect("main/index.html")
+    return redirect("index")
 
 def add_to_cart(request):
     if request.method == 'POST':
