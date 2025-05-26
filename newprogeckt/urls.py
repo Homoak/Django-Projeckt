@@ -25,5 +25,4 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('register/', include('register.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

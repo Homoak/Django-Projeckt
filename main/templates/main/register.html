@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+      <link rel="stylesheet" href="{% static 'main/css/register.css' %}">
+    <title>Регистрация</title>
+</head>
+    <header>
+      <h1>Register</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url '404' %}">Shop</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url '404' %}">Contact Us</a></li>
+          {% if user.is_staff == True %}
+            <li>
+              <a class="nav-link" href="http://127.0.0.1:8000/admin/">Admin</a>
+            </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li>
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
+        </ul>
+      </nav>
+    </header>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

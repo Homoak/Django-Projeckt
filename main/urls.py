@@ -10,7 +10,9 @@ urlpatterns = [
     path('about/', views.about, name='about' ),
     path('about_me/', views.about_me, name='about_me'),
     path('404/', views.error, name='404' ),
-    path('forms/', views.contact_view, name='forms')
+    path('register/', views.register_view, name='register'),
+    path('logout/', views.logout_request, name='logout'),
+    path('login/', views.login_p, name='login'),
+    path('add-to-cart/', views.add_to_cart, name='add_to_cart')
 ]
-
 urlpatterns += staticfiles_urlpatterns()

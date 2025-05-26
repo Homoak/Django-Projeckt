@@ -1,9 +1,13 @@
-from django.shortcuts import render
 from datetime import datetime
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .forms import ContactForm
+from .forms import RegisterForm
+from django.contrib.auth import authenticate, logout, login
+from django.contrib import messages
+from .models import Basket
+
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 def index(request):
         return render(request, 'main/index.html')
@@ -19,15 +23,43 @@ def error(request):
         file.write(f"[{datetime.now()}] 404 Not Found: {request.path}\n")
     return HttpResponseNotFound('404, page not found')
 
-def contact_view(request):
+def register_view(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
+            form.save()
+            return redirect('main/index/html')
     else:
-        form = ContactForm()
+        form = RegisterForm()
+    return render(request, 'main/register.html', {'form': form})
 
-    return render(request, 'main/forms.html', {'form': form})
+def login_p(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("index.html")
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="main/login.html", context={"login_form":form})
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect("main/index.html")
+
+def add_to_cart(request):
+    if request.method == 'POST':
+        stuff_id = request.POST.get('stuff_id')
+        person_id = request.POST.get('person_id')
+        Basket.objects.create(stuff_id=stuff_id, person_id=person_id)
+    return redirect('index')  
 

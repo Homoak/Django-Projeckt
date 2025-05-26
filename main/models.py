@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Model, CharField
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
 
 class Produckt(models.Model):
 
@@ -7,18 +9,30 @@ class Produckt(models.Model):
 
     code = models.CharField(max_length=10)
 
-class User(models.Model):
-    user_name = models.CharField(max_length=50)
+    
+class Stuff(models.Model):
+    stuff_id = models.IntegerField()
+    stuff_name = models.CharField(max_length=30)
+    stuff_desc = models.CharField(max_length=257)
+    photo = models.CharField(max_length=100)
+    price = models.FloatField()
+    
+    def publish(self):
+        self.save()
 
+
+class Person(models.Model):
+    person_id = models.IntegerField()
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
     email = models.CharField(max_length=100)
-
-    password = models.CharField(max_length=50)
-
-    age = models.IntegerField()
-
-    phone = models.IntegerField()
-
     birthday = models.DateField()
+    password = models.CharField(max_length=257)
+    phone = models.CharField(max_length=12)
+    admin = models.BooleanField()
+
+    def publish(self):
+        self.save()
 
 class Admin_Table(models.Model):
     name = models.CharField(max_length=50)
@@ -27,7 +41,11 @@ class Admin_Table(models.Model):
 
     phone = models.IntegerField()
 
-class Cart(models.Model):
-    subjeckt = models.CharField(max_length=50)
+class Basket(models.Model):
+    stuff = models.ForeignKey(Stuff, on_delete=models.CASCADE)
 
-    code = models.CharField(max_length=10)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    date = models.DateField()
+
+    def publish(self):
+        self.save()
