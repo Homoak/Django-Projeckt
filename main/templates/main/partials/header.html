@@ -1,12 +1,33 @@
     <header>
-      <h1>{% block title %}{% endblock %}</h1>
       <nav>
         <ul>
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url '404' %}">Shop</a></li>
           <li><a href="{% url 'about' %}">About Us</a></li>
-          <li><a href="{% url 'about_me' %}">About Me</a></li>
           <li><a href="{% url '404' %}">Contact Us</a></li>
+          {% if user.is_staff == True %}
+            <li>
+              <a class="nav-link" href="http://127.0.0.1:8000/admin/">Admin</a>
+            </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li>
+          <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <a href="#" class="nav-link" onclick="this.closest('form').submit(); return false;">Logout</a>
+          </form>
+        </li>
+        <li>
+          <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        {% endif %}
         </ul>
       </nav>
     </header>
