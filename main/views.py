@@ -1,10 +1,10 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .forms import RegisterForm
+from .forms import RegisterForm, ProducktForm
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from .models import Basket
+from .models import Basket, Produckt
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -62,4 +62,17 @@ def add_to_cart(request):
         person_id = request.POST.get('person_id')
         Basket.objects.create(stuff_id=stuff_id, person_id=person_id)
     return redirect('index')  
+
+def add_produckt(request):
+    if request.method == 'POST':
+        form = ProducktForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        
+    else:
+            form = ProducktForm()
+
+    return render(request, 'main/admin_page.html', {'form': form})
+        
 

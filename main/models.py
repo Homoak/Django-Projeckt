@@ -4,10 +4,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
 
 class Produckt(models.Model):
-
     name = models.CharField(max_length=30)
-
-    code = models.CharField(max_length=10)
+    description = models.CharField(max_length=150)
+    cost = models.FloatField()
 
     
 class Stuff(models.Model):
