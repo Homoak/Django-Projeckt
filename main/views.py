@@ -10,7 +10,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 def index(request):
-        return render(request, 'main/index.html')
+    products = Produckt.objects.all()
+    return render(request, 'main/index.html', {'products': products})
 
 def about(request):
     return render(request, 'main/about.html')
@@ -65,7 +66,7 @@ def add_to_cart(request):
 
 def add_produckt(request):
     if request.method == 'POST':
-        form = ProducktForm(request.POST)
+        form = ProducktForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('index')

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
   <body>
     <header>
-        <h1>{% block title %} Login {% endblock %}</h1>{% include "main/partials/header.html" %}
+        <h1>{% block title %} Home {% endblock %}</h1>{% include "main/partials/header.html" %}
     </header>
     <main>
         <section>
@@ -81,6 +81,29 @@
             </li>
           </ul>
         </section>
+        <section>
+  <h2>New Added</h2>
+  <ul>
+    {% for product in products %}
+      <li>
+        {% if product.image %}
+          <img src="{{ product.image.url }}">
+
+        {% else %}
+          <p>[Немає зображення]</p>
+        {% endif %}
+
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.cost }} USD</p>
+        <button>Add to Cart</button>
+      </li>
+    {% empty %}
+      <li>Поки немає товарів.</li>
+    {% endfor %}
+  </ul>
+</section>
+
       </main>
     <footer>
       <p>&copy; 2025 GoITeens. All rights reserved.</p>

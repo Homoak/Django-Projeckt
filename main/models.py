@@ -6,7 +6,10 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 class Produckt(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=150)
-    cost = models.FloatField()
+    price = models.FloatField()
+    category = models.CharField(max_length=30)
+    image = models.ImageField(upload_to='main/images/admin_add', blank=True, null=True)
+
 
     
 class Stuff(models.Model):
