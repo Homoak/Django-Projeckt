@@ -23,7 +23,7 @@ def error(request):
     with open('main/files/errors.txt', 'a') as file:
         file.write(f"[{datetime.now()}] 404 Not Found: {request.path}\n")
     return HttpResponseNotFound('404, page not found')
-
+        
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)

@@ -9,9 +9,8 @@ class Produckt(models.Model):
     price = models.FloatField()
     category = models.CharField(max_length=30)
     image = models.ImageField(upload_to='main/images/admin_add', blank=True, null=True)
+    new = models.CharField(max_length=10)
 
-
-    
 class Stuff(models.Model):
     stuff_id = models.IntegerField()
     stuff_name = models.CharField(max_length=30)
