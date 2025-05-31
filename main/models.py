@@ -21,13 +21,11 @@ class Stuff(models.Model):
     def publish(self):
         self.save()
 
-
 class Person(models.Model):
     person_id = models.IntegerField()
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
     email = models.CharField(max_length=100)
-    birthday = models.DateField()
     password = models.CharField(max_length=257)
     phone = models.CharField(max_length=12)
     admin = models.BooleanField()

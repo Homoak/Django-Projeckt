@@ -16,7 +16,7 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('login/', views.login_p, name='login'),
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
-    path('admin_page/', views.add_produckt, name='add_produckt')
+    path('admin_page/', views.add_produckt, name='add_produckt'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 

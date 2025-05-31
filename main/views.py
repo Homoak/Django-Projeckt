@@ -75,5 +75,4 @@ def add_produckt(request):
             form = ProducktForm()
 
     return render(request, 'main/admin_page.html', {'form': form})
-        
 
