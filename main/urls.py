@@ -17,8 +17,8 @@ urlpatterns = [
     path('login/', views.login_p, name='login'),
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
     path('admin_page/', views.add_produckt, name='add_produckt'),
-    path('add_rewiew/', views.add_produckt_rewiew, name='add_rewiew'),
-    path('rewiews', views.rewiews, name='rewiews')
+    path('add_review/', views.add_produckt_review, name='add_review'),
+    path('reviews', views.reviews, name='reviews')
 ]
 urlpatterns += staticfiles_urlpatterns()
 

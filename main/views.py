@@ -1,10 +1,10 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .forms import RegisterForm, ProducktForm, ProducktFormRewiew
+from .forms import RegisterForm, ProducktForm, ProducktFormReview
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from .models import Basket, Produckt, Rewiew
+from .models import Basket, Produckt, Review
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -13,9 +13,9 @@ def index(request):
     products = Produckt.objects.all()
     return render(request, 'main/index.html', {'products': products})
 
-def rewiews(request):
-    rewiews = Rewiew.objects.all()
-    return render(request, 'main/rewiews.html', {'rewiews':rewiews})
+def reviews(request):
+    reviews = Review.objects.all()
+    return render(request, 'main/reviews.html', {'reviews':reviews})
 
 def about(request):
     return render(request, 'main/about.html')
@@ -73,20 +73,17 @@ def add_produckt(request):
         form = ProducktForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')
-        
+            return redirect('index') 
     else:
             form = ProducktForm()
-
     return render(request, 'main/admin_page.html', {'form': form})
 
-def add_produckt_rewiew(request):
+def add_produckt_review(request):
     if request.method == 'POST':
-        form = ProducktFormRewiew(request.POST)
+        form = ProducktFormReview(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-            form = ProducktFormRewiew()
-    
-    return render(request, 'main/add_rewiew.html', {'form': form})
+            form = ProducktFormReview()
+    return render(request, 'main/add_review.html', {'form': form})

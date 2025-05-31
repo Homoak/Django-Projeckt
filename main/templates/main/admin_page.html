@@ -9,13 +9,12 @@
 </head>
 <body>
     <header>
-        <h1>{% block title %} Login {% endblock %}</h1>{% include "main/partials/header.html" %}
+        <h1>{% block title %} Add a product {% endblock %}</h1>{% include "main/partials/header.html" %}
     </header>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}  <!-- Вывод формы с автоматической обёрткой в <p> -->
     <button type="submit">Сохранить</button>
 </form>
-
 </body>
 </html>

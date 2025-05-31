@@ -10,9 +10,9 @@
 <body>
      <h2>New Reviews</h2>
   <ul>
-    {% for rewiew in rewiews %}
-    <h2>Produckt name: {{ rewiew.name }}</h2>
-        <li>Review: {{ rewiew.rewiew }}</li>
+    {% for review in reviews %}
+    <h2>Produckt name: {{ review.name }}</h2>
+        <li>Review: {{ review.review }}</li>
     {% empty %}
       <li>Поки немає коментарів.</li>
     {% endfor %}
