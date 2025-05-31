@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/admin_style.css' %}">
+    <title>Add_review</title>
+</head>
+<body>
+    <header>
+        <h1>{% block title %} Add_Review {% endblock %}</h1>{% include "main/partials/header.html" %}
+    </header>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Сохранить</button>
+</body>
+</html>

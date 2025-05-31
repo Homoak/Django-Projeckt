@@ -1,10 +1,10 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .forms import RegisterForm, ProducktForm
+from .forms import RegisterForm, ProducktForm, ProducktFormRewiew
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from .models import Basket, Produckt
+from .models import Basket, Produckt, Rewiew
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -12,6 +12,10 @@ from django.contrib.auth.models import User
 def index(request):
     products = Produckt.objects.all()
     return render(request, 'main/index.html', {'products': products})
+
+def rewiews(request):
+    rewiews = Rewiew.objects.all()
+    return render(request, 'main/rewiews.html', {'rewiews':rewiews})
 
 def about(request):
     return render(request, 'main/about.html')
@@ -76,3 +80,13 @@ def add_produckt(request):
 
     return render(request, 'main/admin_page.html', {'form': form})
 
+def add_produckt_rewiew(request):
+    if request.method == 'POST':
+        form = ProducktFormRewiew(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+            form = ProducktFormRewiew()
+    
+    return render(request, 'main/add_rewiew.html', {'form': form})

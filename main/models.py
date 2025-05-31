@@ -11,6 +11,10 @@ class Produckt(models.Model):
     image = models.ImageField(upload_to='main/images/admin_add', blank=True, null=True)
     new = models.CharField(max_length=10)
 
+class Rewiew(models.Model):
+    name = models.CharField(max_length=30)
+    rewiew = models.CharField(max_length=250)
+
 class Stuff(models.Model):
     stuff_id = models.IntegerField()
     stuff_name = models.CharField(max_length=30)

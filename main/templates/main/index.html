@@ -97,6 +97,12 @@
         <p>{{ product.description }}</p>
         <p>Price: {{ product.price }} USD</p>
         <button>Add to Cart</button>
+        <a href="{% url 'rewiews' %}">
+          <button type="button">Reviews</button>
+        </a>
+        <a href="{% url 'add_rewiew' %}">
+          <button type="button">Add review</button>
+        </a>
       </li>
     {% empty %}
       <li>Поки немає товарів.</li>
