@@ -10,8 +10,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 def index(request):
-    products = Produckt.objects.all()
-    return render(request, 'main/index.html', {'products': products})
+    query = request.GET.get('q')
+    if query:
+        search = Produckt.objects.filter(name=query)
+    else:
+        search = Produckt.objects.all()
+    products = Produckt.objects.all()    
+    return render(request, 'main/index.html', {'searchs':search, 'query':query, 'products': products})
 
 def reviews(request):
     reviews = Review.objects.all()
@@ -87,3 +92,14 @@ def add_produckt_review(request):
     else:
             form = ProducktFormReview()
     return render(request, 'main/add_review.html', {'form': form})
+
+# def search(request):
+#     query = request.GET.get('q')
+#     print(query)
+#     if query:
+#         search = Produckt.objects.filter(name=query)
+#     else:
+#         search = Produckt.objects.all()
+        
+#     print(search)
+#     return render(request, 'main/search.html', {'searchs':search, 'query':query})

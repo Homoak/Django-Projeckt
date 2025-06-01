@@ -41,3 +41,33 @@
     color: #000;
     text-decoration: none;
   }
+
+  nav form {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* Отступ слева от пунктов меню */
+}
+
+nav form input[type="text"] {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  font-size: 14px;
+  outline: none;
+  width: 150px;
+}
+
+nav form button {
+  padding: 5px 12px;
+  border: none;
+  background-color: #555;
+  color: white;
+  font-size: 14px;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav form button:hover {
+  background-color: #777;
+}

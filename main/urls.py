@@ -18,7 +18,7 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
     path('admin_page/', views.add_produckt, name='add_produckt'),
     path('add_review/', views.add_produckt_review, name='add_review'),
-    path('reviews', views.reviews, name='reviews')
+    path('reviews/', views.reviews, name='reviews')
 ]
 urlpatterns += staticfiles_urlpatterns()
 

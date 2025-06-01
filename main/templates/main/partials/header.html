@@ -5,6 +5,10 @@
           <li><a href="{% url '404' %}">Shop</a></li>
           <li><a href="{% url 'about' %}">About Us</a></li>
           <li><a href="{% url '404' %}">Contact Us</a></li>
+          <li>    <form method="get" action="{% url 'index' %}">
+    <input type="text" name="q" placeholder="Поиск..." value="{{ query }}">
+    <button type="submit">Искать</button>
+    </form></li>
           {% if user.is_staff == True %}
             <li>
               <a class="nav-link" href="http://127.0.0.1:8000/admin/">Admin</a>

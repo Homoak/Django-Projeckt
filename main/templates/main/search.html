@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get" action="{% url 'search' %}">
+    <input type="text" name="q" placeholder="Поиск..." value="{{ query }}">
+    <button type="submit">Искать</button>
+    </form>
+
+<ul>
+    {% for search in searchs %}
+        <li>{{ search.name }}</li>
+    {% empty %}
+        <li>Ничего не найдено</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
