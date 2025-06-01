@@ -14,22 +14,16 @@
     <button type="submit">Искать</button>
   </form>
 </div>
-    {% for search in searchs %}
-        <p>{{ search.name }}</p>
-    {% empty %}
-        <p>Ничего не найдено</p>
-    {% endfor %}
 <section>
   <h2>New Added</h2>
-  <ul>
+  <ul class="product-list">
     {% for product in products %}
-      <li>
+      <li class="product-card" id="product-{{ product.name|slugify }}">
         {% if product.image %}
-          <img src="{{ product.image.url }}">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
           <p>[Немає зображення]</p>
         {% endif %}
-        <li id="product-{{ product.name|slugify }}">{{ search.name }}</li>
         <h3>{{ product.name }}</h3>
         <p>{{ product.description }}</p>
         <p>Price: {{ product.price }} USD</p>
@@ -46,6 +40,7 @@
     {% endfor %}
   </ul>
 </section>
+
 
       </main>
     <footer>
