@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/shop.css' %}">
+    <title>Shop</title>
+</head>
+<body>
+<div class="search-container">
+  <form method="get" action="{% url 'shop' %}#product-{{ query|slugify }}">
+    <input type="text" name="q" placeholder="Поиск..." value="{{ query }}">
+    <button type="submit">Искать</button>
+  </form>
+</div>
+    {% for search in searchs %}
+        <p>{{ search.name }}</p>
+    {% empty %}
+        <p>Ничего не найдено</p>
+    {% endfor %}
+<section>
+  <h2>New Added</h2>
+  <ul>
+    {% for product in products %}
+      <li>
+        {% if product.image %}
+          <img src="{{ product.image.url }}">
+        {% else %}
+          <p>[Немає зображення]</p>
+        {% endif %}
+        <li id="product-{{ product.name|slugify }}">{{ search.name }}</li>
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price }} USD</p>
+        <button>Add to Cart</button>
+        <a href="{% url 'reviews' %}">
+          <button type="button">Reviews</button>
+        </a>
+        <a href="{% url 'add_review' %}">
+          <button type="button">Add review</button>
+        </a>
+      </li>
+    {% empty %}
+      <li>Поки немає товарів.</li>
+    {% endfor %}
+  </ul>
+</section>
+
+      </main>
+    <footer>
+      <p>&copy; 2025 GoITeens. All rights reserved.</p>
+    </footer>
+</body>
+</html>
