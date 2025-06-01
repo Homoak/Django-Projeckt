@@ -11,13 +11,6 @@
         <h1>{% block title %} Home {% endblock %}</h1>{% include "main/partials/header.html" %}
     </header>
     <main>
-      <ul>
-    {% for search in searchs %}
-        <li>{{ search.name }}</li>
-    {% empty %}
-        <li>Ничего не найдено</li>
-    {% endfor %}
-</ul>
         <section>
           <h2>New Arrivals</h2>
           <ul>
