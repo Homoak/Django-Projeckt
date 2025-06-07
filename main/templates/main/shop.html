@@ -20,7 +20,7 @@
 <section>
   <h2>New Added</h2>
   <ul class="product-list">
-    {% for product in products %}
+    {% for product in page %}
       <li class="product-card" id="product-{{ product.name|slugify }}">
         {% if product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -44,22 +44,19 @@
   </ul>
 </section>
 
-{% if page_obj.has_other_pages %}
-    <div class="pagination">
-        {% if page_obj.has_previous %}
+
+
+        {% if page.has_previous %}
             <a href="?q={{ query }}&page=1">Первая</a>
-            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">← Назад</a>
+            <a href="?q={{ query }}&page={{ page.previous_page_number }}">← Back</a>
         {% endif %}
 
-        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+        <span>Страница {{ page.number }} из {{ page.paginator.num_pages }}</span>
 
-        {% if page_obj.has_next %}
-            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Вперёд →</a>
-            <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% if page.has_next %}
+            <a href="?q={{ query }}&page={{ page.next_page_number }}">Next →</a>
+            <a href="?q={{ query }}&page={{ page.paginator.num_pages }}">Last</a>
         {% endif %}
-    </div>
-{% endif %}
-
 
       </main>
     <footer>

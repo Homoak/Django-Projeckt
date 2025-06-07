@@ -28,10 +28,10 @@ def shop(request):
     else:
         search = Produckt.objects.all()
     products = Produckt.objects.all()
-    paginator = Paginator(products, 3)
+    paginator = Paginator(products, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'main/shop.html', {'searchs':search, 'query':query, 'products': products, 'page_obj':page_obj})
+    return render(request, 'main/shop.html', {'searchs':search, 'query':query, 'products': products, 'page':page_obj})
 
 def about(request):
     return render(request, 'main/about.html')
