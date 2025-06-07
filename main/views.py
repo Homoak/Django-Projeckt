@@ -24,11 +24,11 @@ def reviews(request):
 def shop(request):
     query = request.GET.get('q')
     if query:
-        search = Produckt.objects.filter(name=query)
+        search = Produckt.objects.filter(name__icontains=query)
     else:
         search = Produckt.objects.all()
     products = Produckt.objects.all()
-    paginator = Paginator(products, 4)
+    paginator = Paginator(search, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, 'main/shop.html', {'searchs':search, 'query':query, 'products': products, 'page':page_obj})
