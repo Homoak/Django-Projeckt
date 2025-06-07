@@ -1,7 +1,13 @@
 from django.db import models
 from django.db.models import Model, CharField
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import User
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.CharField(max_length=250, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    avatar = models.ImageField(upload_to='main/images/user_avatar', null=True, blank=True)
 
 class Produckt(models.Model):
     name = models.CharField(max_length=30)

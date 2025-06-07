@@ -19,7 +19,8 @@ urlpatterns = [
     path('admin_page/', views.add_produckt, name='add_produckt'),
     path('add_review/', views.add_produckt_review, name='add_review'),
     path('reviews/', views.reviews, name='reviews'),
-    path('shop/', views.shop, name='shop')
+    path('shop/', views.shop, name='shop'),
+    path('profile', views.profile, name='profile')
 ]
 urlpatterns += staticfiles_urlpatterns()
 

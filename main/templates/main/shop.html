@@ -8,6 +8,9 @@
     <title>Shop</title>
 </head>
 <body>
+      <header>
+        <h1>{% block title %} Shop {% endblock %}</h1>{% include "main/partials/header.html" %}
+    </header>
 <div class="search-container">
   <form method="get" action="{% url 'shop' %}#product-{{ query|slugify }}">
     <input type="text" name="q" placeholder="Поиск..." value="{{ query }}">
@@ -40,6 +43,22 @@
     {% endfor %}
   </ul>
 </section>
+
+{% if page_obj.has_other_pages %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?q={{ query }}&page=1">Первая</a>
+            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">← Назад</a>
+        {% endif %}
+
+        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Вперёд →</a>
+            <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </div>
+{% endif %}
 
 
       </main>

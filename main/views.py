@@ -1,10 +1,14 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from .forms import RegisterForm, ProducktForm, ProducktFormReview
+from .forms import RegisterForm, ProducktForm, ProducktFormReview, ProfileForm
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from .models import Basket, Produckt, Review
+from .models import Basket, Produckt, Review, Profile
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+
+
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -23,8 +27,11 @@ def shop(request):
         search = Produckt.objects.filter(name=query)
     else:
         search = Produckt.objects.all()
-    products = Produckt.objects.all()    
-    return render(request, 'main/shop.html', {'searchs':search, 'query':query, 'products': products})
+    products = Produckt.objects.all()
+    paginator = Paginator(products, 3)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/shop.html', {'searchs':search, 'query':query, 'products': products, 'page_obj':page_obj})
 
 def about(request):
     return render(request, 'main/about.html')
@@ -42,7 +49,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('main/index.html')
+            return redirect('index')
     else:
         form = RegisterForm()
     return render(request, 'main/register.html', {'form': form})
@@ -107,3 +114,21 @@ def add_produckt_review(request):
         
 #     print(search)
 #     return render(request, 'main/search.html', {'searchs':search, 'query':query})
+
+@login_required
+def profile(request):
+    user = request.user
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'form': form, 'email':user.email, 'name':user.name})
